@@ -25,7 +25,7 @@ SECRET_KEY = 'vt83_11grglu-^#o9g-5wor_3+1ck@x$+s^v)$h)z_l1sn*ho-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aqueous-cliffs-84675.herokuapp.com']
 
 
 # Application definition

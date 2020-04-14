@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finastra SummitAI Triage</title>
+    <link rel="icon" href="data:image/jpeg;base64,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">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+	body{
+		background: #eeeeee;
+		font-family: 'Varela Round', sans-serif;
+	}
+    .form-inline {
+        display: inline-block;
+    }
+	.navbar-header.col {
+		padding: 0 !important;
+	}
+	.navbar {
+		color: #fff;
+		background: #926dde;
+		padding: 5px 16px;
+		border-radius: 0;
+		border: none;
+		box-shadow: 0 0 4px rgba(0,0,0,.1);
+	}
+	.navbar img {
+		border-radius: 50%;
+		width: 36px;
+		height: 36px;
+		margin-right: 10px;
+	}
+	.navbar .navbar-brand {
+		color: #efe5ff;
+		padding-left: 0;
+		padding-right: 50px;
+		font-size: 24px;
+	}
+	.navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
+		color: #fff;
+	}
+	.navbar .navbar-brand i {
+		font-size: 25px;
+		margin-right: 5px;
+	}
+	.search-box {
+        position: relative;
+    }
+    .search-box input {
+        padding-right: 35px;
+		min-height: 38px;
+		border: none;
+		background: #faf7fd;
+        border-radius: 3px !important;
+    }
+	.search-box input:focus {
+		background: #fff;
+		box-shadow: none;
+	}
+	.search-box .input-group-addon {
+        min-width: 35px;
+        border: none;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        z-index: 9;
+        padding: 10px 7px;
+		height: 100%;
+    }
+    .search-box i {
+        color: #a0a5b1;
+		font-size: 19px;
+    }
+	.navbar .nav-item i {
+		font-size: 18px;
+	}
+	.navbar .nav-item span {
+		position: relative;
+		top: 3px;
+	}
+	.navbar .nav > li a {
+		color: #efe5ff;
+		padding: 8px 15px;
+		font-size: 14px;
+	}
+	.navbar .nav > li a:hover, .navbar .nav > li a:focus {
+		color: #fff;
+		text-shadow: 0 0 4px rgba(255,255,255,0.3);
+	}
+	.navbar .nav > li > a > i {
+		display: block;
+		text-align: center;
+	}
+	.navbar .dropdown-item i {
+		font-size: 16px;
+		min-width: 22px;
+	}
+    .navbar .dropdown-item .material-icons {
+        font-size: 21px;
+        line-height: 16px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+	.navbar .nav-item.open > a, .navbar .nav-item.open > a:hover, .navbar .nav-item.open > a:focus {
+		color: #fff;
+		background: none !important;
+	}
+	.navbar .dropdown-menu {
+		border-radius: 1px;
+		border-color: #e5e5e5;
+		box-shadow: 0 2px 8px rgba(0,0,0,.05);
+	}
+	.navbar .dropdown-menu li a {
+		color: #777 !important;
+		padding: 8px 20px;
+		line-height: normal;
+	}
+	.navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:focus {
+		color: #333 !important;
+		background: transparent !important;
+	}
+	.navbar .nav .active a, .navbar .nav .active a:hover, .navbar .nav .active a:focus {
+		color: #fff;
+		text-shadow: 0 0 4px rgba(255,255,255,0.2);
+		background: transparent !important;
+	}
+	.navbar .nav .user-action {
+		padding: 9px 15px;
+	}
+	.navbar .navbar-toggle {
+		border-color: #fff;
+	}
+	.navbar .navbar-toggle .icon-bar {
+		background: #fff;
+	}
+	.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+		background: transparent;
+	}
+	.navbar .navbar-nav .open .dropdown-menu {
+		background: #faf7fd;
+		border-radius: 1px;
+		border-color: #faf7fd;
+		box-shadow: 0 2px 8px rgba(0,0,0,.05);
+	}
+	.navbar .divider {
+		background-color: #e9ecef !important;
+	}
+	@media (min-width: 1200px){
+		.form-inline .input-group {
+			width: 350px;
+			margin-left: 30px;
+		}
+	}
+	@media (max-width: 1199px){
+		.navbar .nav > li > a > i {
+			display: inline-block;
+			text-align: left;
+			min-width: 30px;
+			position: relative;
+			top: 4px;
+		}
+		.navbar .navbar-collapse {
+			border: none;
+			box-shadow: none;
+			padding: 0;
+		}
+		.navbar .navbar-form {
+			border: none;
+			display: block;
+			margin: 10px 0;
+			padding: 0;
+		}
+		.navbar .navbar-nav {
+			margin: 8px 0;
+		}
+		.navbar .navbar-toggle {
+			margin-right: 0;
+		}
+		.input-group {
+			width: 100%;
+		}
+	}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark" >
+	<div class="navbar-header d-flex col">
+		<a class="navbar-brand" href="{% url 'index' %}"><i ><img src="{% static 'webapp/logo.png' %}" width="180" height="60" class="d-inline-block align-top"></i>Finastra<b>SummitAI</b></a>
+		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
+			<span class="navbar-toggler-icon"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+
+	<!-- Collection of nav links, forms, and other content for toggling -->
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+         {% if user.is_authenticated %}
+		<form class="navbar-form form-inline">
+            {% csrf_token %}
+			<div class="input-group search-box">
+				<input type="text" id="search" class="form-control" placeholder="Search here for cases...">
+				<span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+			</div>
+		</form>
+		<ul class="nav navbar-nav navbar-right ml-auto">
+			<li class="nav-item active"><a href="#" class="nav-link"><i class="fa fa-home"></i><span>Home</span></a></li>
+			<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-users"></i><span>Team</span></a></li>
+			<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-pie-chart"></i><span>Reports</span></a></li>
+			<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a></li>
+			<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i><span>Notifications</span></a></li>
+			<li class="nav-item dropdown">
+				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> {{ user }} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+					<li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+					<li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+					<li class="divider dropdown-divider"></li>
+				    <li><a href="#" onclick="$('#signOutBtn').click()"  class="dropdown-item"><i class="material-icons">&#xE8AC;</i>Logout</a>
+                    <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
+                        {% csrf_token %}
+                        <button id="signOutBtn" type="submit">Logout</button>
+                    </form>
+                     </li>
+				</ul>
+			</li>
+		</ul>
+    {% else %}
+<ul class="nav navbar-nav navbar-right ml-auto">
+<li class="nav-item active"><a href="{% url 'signupuser' %}" class="nav-link"><i class="fa fa-user-plus"></i><span>Sign Up</span></a></li>
+    <li class="nav-item active"><a href="{% url 'loginuser' %}" class="nav-link"><i class="fa fa-sign-in"></i><span>Login</span></a></li>
+</ul>
+
+    {% endif %}
+        </div>
+</nav>
+</body>
+</html>
+
+
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+<div class="container">
+ <hr>
+    <footer>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Copyright &copy; 2020 FinastraSummitAI</p>
+            </div>
+            <div class="col-md-6 text-md-right">
+                <a href="#" class="text-dark">Terms of Use</a>
+                <span class="text-muted mx-2">|</span>
+                <a href="#" class="text-dark">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,93 @@
+{% extends "webapp/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if cases %}
+                 <h1>{{ cases.count }} Current Cases{{ cases.count|pluralize }}</h1>
+            {% else %}
+                           <h1>Current Cases</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if cases %}
+             <table class="table">
+                   <thead class="thead-dark">
+                        <tr>
+                         <th scope="col">Case Subject</th>
+                            <th scope="col">Case Description</th>
+                             <th scope="col">Summit Module</th>
+                             <th scope="col">Action</th>
+
+                        </tr>
+                   </thead>
+             <tbody>
+                {% for case in cases %}
+                <tr>
+                 <form method="POST" action="{% url 'completecase' case.caseIDSf %}" id="casef" name="casef">
+                      {% csrf_token %}
+                         <td> {{case.caseSubject }}  </td><td> {{case.caseDescription }}</td> <td>
+
+                     <select  class="selectpicker" name="sumModule" id="sumModule">
+                 {% if modules_acct %}
+                     <optgroup label= 'ACCT'>
+                         {% for key in modules_acct %}
+                            <option {% if case.caseModule == key %}selected {% endif %}>{{key}}
+                            </option>
+                         {% endfor %}
+                     </optgroup>
+                {% endif %}
+                 {% if modules_arch %}
+                     <optgroup label= 'ARCH'>
+                         {% for key in modules_arch %}
+                             <option
+                                     {% if case.caseModule == key %}selected {% endif %}>{{key}}
+                            </option>
+                         {% endfor %}
+                     </optgroup>
+                {% endif %}
+                 {% if modules_bo %}
+                     <optgroup label= 'BO'>
+                         {% for key in modules_bo %}
+                            <option
+                                     {% if case.caseModule == key %}selected {% endif %}>{{key}}
+                            </option>
+                         {% endfor %}
+                     </optgroup>
+                {% endif %}
+                 {% if modules_fo %}
+                     <optgroup label= 'FO'>
+                         {% for key in modules_fo %}
+                            <option
+                                     {% if case.caseModule == key %}selected {% endif %}>{{key}}
+                            </option>
+                         {% endfor %}
+                     </optgroup>
+                {% endif %}
+                {% if modules_risk %}
+                     <optgroup label= 'RISK'>
+                         {% for key in modules_risk %}
+                             <option
+                                     {% if case.caseModule == key %}selected{% endif %}>{{key}}
+                            </option>
+                         {% endfor %}
+                     </optgroup>
+                {% endif %}
+            </select>
+
+                 </td> <td><button  type="button" class="btn btn-success float-md-right " onclick="$('#casef').submit()">Complete</button></td>
+
+                 </form></tr>
+                                 {% endfor %}
+                 </tbody>
+             </table>
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you don't have any todos! Nice work.</h2>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

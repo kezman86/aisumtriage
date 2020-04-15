@@ -29,7 +29,12 @@
                 <tr>
                  <form method="POST" action="{% url 'completecase' case.caseIDSf %}" id="casef" name="casef">
                       {% csrf_token %}
-                          <td> <a href="https://misys.my.salesforce.com/{{case.caseIDSf }}" >{{case.caseNumber}}</a> </td> <td> {{case.caseSubject }}  </td><td> {{case.caseDescription }}</td> <td>
+                     	<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+                          <td> <a href="https://misys.my.salesforce.com/{{case.caseIDSf }}" target="_blank">{{case.caseNumber}}</a> </td> <td> {{case.caseSubject }}  </td><td rel="tooltip" data-toggle="tooltip" data-selector="true" data-container="body" title="{{ case.caseDescription}}" data-trigger="hover"  data-placement="bottom" data-html="true" > {{case.caseDescription|truncatechars:200 }}</td> <td>
 
                      <select  class="selectpicker" name="sumModule" id="sumModule">
                  {% if modules_acct %}

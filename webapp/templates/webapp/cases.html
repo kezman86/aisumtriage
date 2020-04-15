@@ -16,6 +16,7 @@
              <table class="table">
                    <thead class="thead-dark">
                         <tr>
+                             <th scope="col">Case</th>
                          <th scope="col">Case Subject</th>
                             <th scope="col">Case Description</th>
                              <th scope="col">Summit Module</th>
@@ -28,7 +29,7 @@
                 <tr>
                  <form method="POST" action="{% url 'completecase' case.caseIDSf %}" id="casef" name="casef">
                       {% csrf_token %}
-                         <td> {{case.caseSubject }}  </td><td> {{case.caseDescription }}</td> <td>
+                          <td> <a href="https://misys.my.salesforce.com/{{case.caseIDSf }}" >{{case.caseNumber}}</a> </td> <td> {{case.caseSubject }}  </td><td> {{case.caseDescription }}</td> <td>
 
                      <select  class="selectpicker" name="sumModule" id="sumModule">
                  {% if modules_acct %}

@@ -21,7 +21,7 @@ from webapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.cases , name='index'),
+    path('', views.index, name='index'),
 
     # Auth
     path ( 'signup/' , views.signupuser , name = 'signupuser' ) ,

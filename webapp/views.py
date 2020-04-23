@@ -70,7 +70,7 @@ sumModules = {
 
 @login_required
 def cases(request):
-    cases = CaseSF.objects.filter( datecompleted__isnull=True )
+    cases = CaseSF.objects.filter( status = 0 )
 
     if request.method == 'GET':
         return render(request, 'webapp/cases.html', {'cases':cases,
@@ -102,9 +102,11 @@ def completecase(request, caseID):
     if request.method == 'POST':
         case.datecompleted = timezone.now()
         case.completedBy = request.user
+        case.status = 1  # reviewed
         if case.caseModule != request.POST['sumModule']:
             case.caseModule = request.POST['sumModule']
             case.aicorrect = False
+
         case.save()
         return redirect('cases')
 

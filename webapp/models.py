@@ -67,3 +67,4 @@ class CaseSF(models.Model):
     aicorrect = models.BooleanField(default = True)
     datecompleted = models.DateTimeField(null=True, blank=True)
     completedBy = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    status = models.IntegerField(default = 0)

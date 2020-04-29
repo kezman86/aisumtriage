@@ -27,7 +27,7 @@
              <tbody>
                 {% for case in cases %}
                 <tr>
-                 <form method="POST" action="{% url 'completecase' case.caseIDSf %}" id="casef" name="casef">
+                 <form method="POST" action="{% url 'completecase' case.caseIDSf %}" id="casef{{ forloop.counter }}" name="casef{{ forloop.counter }}">
                       {% csrf_token %}
                      	<script>
     $(document).ready(function(){
@@ -83,7 +83,7 @@
                 {% endif %}
             </select>
 
-                 </td> <td><button  type="button" class="btn btn-success float-md-right " onclick="$('#casef').submit()">Complete</button></td>
+                 </td> <td><button  type="button" class="btn btn-success float-md-right " onclick="$('#casef{{ forloop.counter }}').submit()">Complete</button></td>
 
                  </form></tr>
                                  {% endfor %}

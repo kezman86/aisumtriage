@@ -50,6 +50,7 @@ def getAllCases(request):
     for case in allcases:
         cases.append(CaseSFSerializer(case ).data)
     data = {
+        'status' : "true",
         'cases': cases,
         'modules_risk' : sumModules['risk'],
         'modules_acct' : sumModules["acct"],

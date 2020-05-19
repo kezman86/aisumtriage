@@ -86,5 +86,6 @@ def approvecase(request):
         data = {'status' : "true",'detail' : 'case approved - module changed'}
         return Response ( data , status = HTTP_200_OK )
 
+    case.save()
     data = {'status' : "true",'detail' : 'case approved'}
     return Response ( data , status = HTTP_200_OK )

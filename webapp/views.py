@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.db import IntegrityError
+from django.urls import reverse
 from django.utils import timezone
 
 from webapp.forms import CaseSFForm
@@ -70,10 +71,13 @@ sumModules = {
 
 @login_required
 def cases(request):
-    cases = CaseSF.objects.filter( status = 0 )
+    if not request.user.is_authenticated:
+        return redirect ( 'index' )
+    else:
+        cases = CaseSF.objects.filter( status = 0 )
 
-    if request.method == 'GET':
-        return render(request, 'webapp/cases.html', {'cases':cases,
+        if request.method == 'GET':
+            return render(request, 'webapp/cases.html', {'cases':cases,
                                                  'modules_risk' : sumModules['risk'],
                                                  'modules_acct' : sumModules["acct"],
                                                  'modules_bo' : sumModules["bo"],
@@ -109,35 +113,6 @@ def completecase(request, caseID):
 
         case.save()
         return redirect('cases')
-
-def savecases(request):
-    case = CaseSF()
-    case.caseIDSf = 'id25'
-    case.caseNumber = '25'
-    case.caseDescription = ' Desc case2 5'
-    case.caseSubject = 'Subj 5'
-    case.caseModule = "Summit - Buyside"
-
-    case.save()
-
-    case = CaseSF()
-    case.caseIDSf = 'id26'
-    case.caseNumber = '26'
-    case.caseDescription = ' Desc case 26'
-    case.caseSubject = 'Subj 26'
-    case.caseModule = "Summit - Risk Management / RT Risk"
-
-    case.save()
-
-
-    case = CaseSF()
-    case.caseIDSf = 'id27'
-    case.caseNumber = '27'
-    case.caseDescription = ' Desc case 27'
-    case.caseSubject = 'Subj 7'
-    case.caseModule = "Summit - Performance"
-
-    case.save()
 
 
 

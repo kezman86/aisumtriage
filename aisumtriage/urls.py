@@ -35,11 +35,11 @@ urlpatterns = [
     path('completedcases/', views.completedcases, name='completedcases'),
     path('case/<caseID>/complete' , views.completecase, name='completecase'),
     path('case/<caseID>', views.viewcase , name='viewcase'),
-    path('savecases/', views.savecases),
+
 
     #api
     path('api/login' , api.views.loginapi, name='loginapi'),
     path('api/sampleapi', api.views.sample_api, name='sampleapi'),
     path('api/getAllCases', api.views.getAllCases , name='getAllCases'),
-    path('api/approvecase/<caseID>', api.views.approvecase , name='approvecase')
+    path('api/approvecase', api.views.approvecase , name='approvecase')
 ]

@@ -24,11 +24,11 @@ def loginapi(request):
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:
-        return Response({'error': 'Please provide both username and password'},
+        return Response({'status': 'false','error': 'Please provide both username and password'},
                         status=HTTP_400_BAD_REQUEST)
     user = authenticate(username=username, password=password)
     if not user:
-        return Response({'error': 'Invalid Credentials'},
+        return Response({'status': 'false','error': 'Invalid Credentials'},
                         status=HTTP_404_NOT_FOUND)
     token, _ = Token.objects.get_or_create(user=user)
     return Response({'status' : 'true', 'token': token.key},
@@ -62,11 +62,16 @@ def getAllCases(request):
 
 @csrf_exempt
 @api_view(["POST"])
-def approvecase(request, caseID):
+def approvecase(request):
     if 'sumModule' not in request.POST:
-        data = {'detail' : 'errors: module not specified'}
+        data = {'status' : "true",'detail' : 'errors: module not specified'}
         return Response ( data , status = HTTP_400_BAD_REQUEST )
 
+    if 'caseid' not in request.POST:
+        data = {'status' : "true",'detail' : 'errors: caseid not specified'}
+        return Response ( data , status = HTTP_400_BAD_REQUEST )
+
+    caseID = request.POST['caseid']
     case = get_object_or_404(CaseSF, caseIDSf=caseID)
 
     case.datecompleted = timezone.now()
@@ -78,8 +83,8 @@ def approvecase(request, caseID):
         case.aicorrect = False
 
         case.save()
-        data = {'detail' : 'case approved - module changed'}
+        data = {'status' : "true",'detail' : 'case approved - module changed'}
         return Response ( data , status = HTTP_200_OK )
 
-    data = {'detail' : 'case approved'}
+    data = {'status' : "true",'detail' : 'case approved'}
     return Response ( data , status = HTTP_200_OK )
